@@ -1,0 +1,223 @@
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: var(--header-height);
+  background: rgba(10, 31, 68, 0.94);
+  color: var(--color-white);
+  transition:
+    box-shadow var(--transition),
+    background var(--transition),
+    backdrop-filter var(--transition);
+}
+
+.site-header.is-scrolled {
+  background: rgba(7, 23, 51, 0.97);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px);
+}
+
+.navbar {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.brand__logo {
+  width: clamp(205px, 23vw, 300px);
+  height: auto;
+  max-height: 54px;
+  border-radius: 4px;
+  background: var(--color-white);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+}
+
+.nav-panel {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.35rem);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.45rem, 1vw, 0.8rem);
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0.35rem 0.22rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  transition: color var(--transition);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.34rem;
+  left: 0;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: right;
+  border-radius: 99px;
+  background: var(--color-orange);
+  transition: transform var(--transition);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link.is-active {
+  color: var(--color-white);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.06);
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    background var(--transition),
+    color var(--transition);
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 107, 0, 0.65);
+  background: var(--color-orange);
+}
+
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 102;
+  flex: 0 0 44px;
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  border-radius: 99px;
+  background: var(--color-white);
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1080px) {
+  .navbar {
+    gap: 0.75rem;
+  }
+
+  .brand__logo {
+    width: clamp(190px, 54vw, 235px);
+    max-height: 46px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-panel {
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    left: 0;
+    display: grid;
+    max-height: calc(100svh - var(--header-height));
+    padding: 1rem;
+    transform: translateY(-12px);
+    pointer-events: none;
+    opacity: 0;
+    overflow-y: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(7, 23, 51, 0.98);
+    box-shadow: 0 26px 60px rgba(0, 0, 0, 0.28);
+    transition:
+      opacity var(--transition),
+      transform var(--transition);
+  }
+
+  .nav-panel.is-open {
+    transform: translateY(0);
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .nav-menu {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    justify-content: center;
+    min-height: 48px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .social-links {
+    justify-content: center;
+    padding-top: 0.45rem;
+  }
+}
