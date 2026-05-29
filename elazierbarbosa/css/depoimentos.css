@@ -1,3 +1,4 @@
+/* === DEPOIMENTOS === */
 .testimonials {
   overflow: hidden;
   background:
@@ -30,6 +31,8 @@
 }
 
 .testimonial-card {
+  display: flex;
+  flex-direction: column;
   min-height: 238px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
@@ -88,13 +91,46 @@
   font-size: 0.97rem;
 }
 
-@media (max-width: 980px) {
+.testimonial-card__video {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  margin-top: auto;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 6px;
+  color: var(--color-white);
+  background: rgba(153, 0, 0, 0.18);
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    transform var(--transition);
+}
+
+.testimonial-card__video i {
+  color: var(--color-youtube);
+  font-size: 1rem;
+}
+
+.testimonial-card__video:hover,
+.testimonial-card__video:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--color-white);
+  background: rgba(153, 0, 0, 0.28);
+}
+
+@media (max-width: 1024px) {
   .testimonials__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .testimonials__grid {
     grid-template-columns: 1fr;
   }

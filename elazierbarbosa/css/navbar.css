@@ -1,3 +1,4 @@
+/* === NAVBAR === */
 .site-header {
   position: fixed;
   top: clamp(0.65rem, 1.8vw, 1rem);
@@ -91,7 +92,7 @@
   height: 2px;
   transform: scaleX(0);
   transform-origin: right;
-  border-radius: 99px;
+  border-radius: var(--radius-pill);
   background: var(--color-orange);
   transition: transform var(--transition);
 }
@@ -162,7 +163,7 @@
 .nav-toggle span {
   width: 22px;
   height: 2px;
-  border-radius: 99px;
+  border-radius: var(--radius-pill);
   background: var(--color-white);
   transition:
     transform var(--transition),

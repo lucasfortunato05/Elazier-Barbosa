@@ -1,6 +1,7 @@
+/* === EBOOKS === */
 .ebooks {
   background:
-    linear-gradient(180deg, #EEF2FF 0%, #f7faff 100%);
+    linear-gradient(180deg, var(--color-page) 0%, var(--color-surface-2) 100%);
 }
 
 .ebooks__grid {
@@ -10,8 +11,7 @@
 }
 
 .ebook-card .product-card__image-link {
-  background: #EEF2FF;
-  background-color: #EEF2FF;
+  background: var(--color-page);
 }
 
 .ebook-card .product-card__image-link img {
@@ -20,13 +20,13 @@
   padding: 1.1rem;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1024px) {
   .ebooks__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .ebooks__grid {
     grid-template-columns: 1fr;
   }

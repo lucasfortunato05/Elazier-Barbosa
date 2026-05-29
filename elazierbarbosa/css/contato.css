@@ -1,8 +1,9 @@
+/* === CONTATO === */
 .contact {
   overflow: hidden;
   background:
     radial-gradient(circle at 14% 18%, rgba(255, 185, 0, 0.1), transparent 22rem),
-    linear-gradient(180deg, #EEF2FF 0%, #f7faff 100%);
+    linear-gradient(180deg, var(--color-page) 0%, var(--color-surface-2) 100%);
 }
 
 .contact__layout {
@@ -38,7 +39,7 @@
   gap: 0.8rem;
   border: 1px solid rgba(255, 185, 0, 0.22);
   border-radius: var(--radius-md);
-  background: #EEF2FF;
+  background: var(--color-page);
   padding: clamp(1rem, 3vw, 1.5rem);
   box-shadow: var(--shadow-md);
 }

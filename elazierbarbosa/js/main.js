@@ -5,39 +5,53 @@
   const backToTop = document.querySelector("[data-back-to-top]");
   const navLinks = document.querySelectorAll(".nav-link");
   const sections = document.querySelectorAll("main section[id]");
+  let isScrollQueued = false;
 
+  // Atualiza o estado visual da navbar fixa.
   const setHeaderState = () => {
     if (!header) return;
     header.classList.toggle("is-scrolled", window.scrollY > 10);
   };
 
+  // Mostra ou esconde o botão de voltar ao topo.
   const setBackToTopState = () => {
     if (!backToTop) return;
     backToTop.classList.toggle("is-visible", window.scrollY > 300);
   };
 
-  const closeMenu = () => {
+  // Mantém menu, botão e body sincronizados.
+  const setMenuState = (isOpen) => {
     if (!toggle || !panel) return;
-    toggle.classList.remove("is-open");
-    panel.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("nav-open");
+    toggle.classList.toggle("is-open", isOpen);
+    panel.classList.toggle("is-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    document.body.classList.toggle("nav-open", isOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuState(false);
   };
 
   const toggleMenu = () => {
     if (!toggle || !panel) return;
-    const isOpen = toggle.classList.toggle("is-open");
-    panel.classList.toggle("is-open", isOpen);
-    toggle.setAttribute("aria-expanded", String(isOpen));
-    document.body.classList.toggle("nav-open", isOpen);
+    setMenuState(!panel.classList.contains("is-open"));
   };
 
-  const scrollToAnchor = (anchor) => {
-    const target = document.querySelector(anchor);
+  // Resolve links internos sem depender de seletores CSS.
+  const getAnchorTarget = (href) => {
+    if (!href || href === "#") return null;
+    return document.getElementById(href.slice(1));
+  };
+
+  // Executa o scroll suave para seções da página.
+  const scrollToAnchor = (href) => {
+    const target = getAnchorTarget(href);
     if (!target) return;
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  // Marca no menu a seção mais próxima do topo.
   const setActiveLink = () => {
     let currentId = "inicio";
     const offset = window.innerHeight * 0.32;
@@ -54,10 +68,23 @@
     });
   };
 
+  const syncScrollState = () => {
+    setHeaderState();
+    setBackToTopState();
+    setActiveLink();
+    isScrollQueued = false;
+  };
+
+  const requestScrollSync = () => {
+    if (isScrollQueued) return;
+    isScrollQueued = true;
+    window.requestAnimationFrame(syncScrollState);
+  };
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (event) => {
       const href = anchor.getAttribute("href");
-      if (!href || href === "#") return;
+      if (!getAnchorTarget(href)) return;
 
       event.preventDefault();
       closeMenu();
@@ -75,21 +102,16 @@
     });
   }
 
-  window.addEventListener("scroll", () => {
-    setHeaderState();
-    setBackToTopState();
-    setActiveLink();
-  });
+  window.addEventListener("scroll", requestScrollSync, { passive: true });
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 1080) closeMenu();
+    requestScrollSync();
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeMenu();
   });
 
-  setHeaderState();
-  setBackToTopState();
-  setActiveLink();
+  syncScrollState();
 })();

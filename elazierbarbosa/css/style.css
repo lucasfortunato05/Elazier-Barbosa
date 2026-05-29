@@ -1,14 +1,19 @@
+/* === BASE === */
 :root {
   --color-white: #ffffff;
   --color-navy: #0a1f44;
   --color-navy-2: #12376d;
   --color-navy-3: #071733;
-  --color-orange: #FFB900;
+  --color-orange: #ffb900;
   --color-green: #1db954;
   --color-green-dark: #118a3d;
   --color-ink: #10213d;
   --color-muted: #667085;
   --color-soft: #f5f8fc;
+  --color-page: #eef2ff;
+  --color-surface: #f8fbff;
+  --color-surface-2: #f7faff;
+  --color-youtube: #ff0000;
   --color-line: rgba(10, 31, 68, 0.12);
   --shadow-sm: 0 10px 30px rgba(10, 31, 68, 0.1);
   --shadow-md: 0 18px 55px rgba(10, 31, 68, 0.16);
@@ -17,8 +22,9 @@
   --font-body: "Open Sans", sans-serif;
   --radius-sm: 8px;
   --radius-md: 8px;
-  --container: 1180px;
-  --header-height: 78px;
+  --radius-pill: 99px;
+  --container: 73.75rem;
+  --header-height: 4.875rem;
   --transition: 220ms ease;
 }
 
@@ -36,7 +42,7 @@ html {
 body {
   margin: 0;
   color: var(--color-ink);
-  background: #EEF2FF;
+  background: var(--color-page);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.65;
@@ -50,6 +56,7 @@ body.nav-open {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -97,7 +104,7 @@ ul {
   z-index: 999;
   transform: translateY(-140%);
   border-radius: var(--radius-sm);
-  background: #EEF2FF;
+  background: var(--color-page);
   color: var(--color-navy);
   padding: 0.75rem 1rem;
   box-shadow: var(--shadow-sm);
@@ -121,7 +128,7 @@ ul {
 .section--soft {
   background:
     radial-gradient(circle at top left, rgba(255, 185, 0, 0.08), transparent 32rem),
-    linear-gradient(180deg, #f8fbff 0%, #EEF2FF 100%);
+    linear-gradient(180deg, var(--color-surface) 0%, var(--color-page) 100%);
 }
 
 .section-heading {
@@ -169,7 +176,7 @@ ul {
   content: "";
   width: 2.4rem;
   height: 3px;
-  border-radius: 99px;
+  border-radius: var(--radius-pill);
   background: var(--color-orange);
 }
 
@@ -184,7 +191,7 @@ ul {
   border-radius: var(--radius-sm);
   padding: 0.82rem 1.25rem;
   font-family: var(--font-heading);
-  font-size: 0.92rem;
+  font-size: clamp(0.86rem, 1.6vw, 0.92rem);
   font-weight: 800;
   line-height: 1.15;
   overflow: hidden;
@@ -247,10 +254,11 @@ ul {
 .btn--secondary {
   border: 1px solid rgba(10, 31, 68, 0.14);
   color: var(--color-navy);
-  background: #EEF2FF;
+  background: var(--color-page);
   box-shadow: var(--shadow-sm);
 }
 
+/* === PRODUCT CARDS === */
 .product-card {
   display: flex;
   min-height: 100%;
@@ -300,12 +308,12 @@ ul {
 
 .product-card h3 {
   color: var(--color-navy);
-  font-size: 1.22rem;
+  font-size: clamp(1.08rem, 2vw, 1.22rem);
 }
 
 .product-card p {
   color: var(--color-muted);
-  font-size: 0.97rem;
+  font-size: clamp(0.93rem, 1.7vw, 0.97rem);
 }
 
 .product-card .btn {
@@ -313,6 +321,7 @@ ul {
   margin-top: auto;
 }
 
+/* === REVEAL ANIMATIONS === */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -347,6 +356,7 @@ ul {
   transition-delay: 440ms;
 }
 
+/* === FLOATING ACTIONS === */
 .floating-whatsapp {
   position: fixed;
   right: clamp(1rem, 3vw, 1.5rem);
@@ -437,7 +447,7 @@ ul {
 
 @media (max-width: 600px) {
   :root {
-    --header-height: 72px;
+    --header-height: 4.5rem;
   }
 
   .container {
@@ -450,20 +460,28 @@ ul {
 
   .btn {
     width: 100%;
+    white-space: normal;
   }
+}
 
+@media (max-width: 480px) {
   .floating-whatsapp {
     right: 0.85rem;
     bottom: 0.85rem;
-    min-height: 50px;
-    padding: 0.82rem 0.95rem;
+    min-height: 44px;
+    padding: 0.62rem 0.78rem;
+    font-size: 0.82rem;
+  }
+
+  .floating-whatsapp i {
+    font-size: 1.12rem;
   }
 
   .back-to-top {
     right: 0.85rem;
-    bottom: calc(0.85rem + 64px);
-    width: 42px;
-    height: 42px;
+    bottom: calc(0.85rem + 56px);
+    width: 40px;
+    height: 40px;
   }
 }
 

@@ -1,6 +1,7 @@
 (function () {
   const revealItems = document.querySelectorAll(".reveal");
 
+  // Revela os elementos quando entram na área visível.
   if (!("IntersectionObserver" in window)) {
     revealItems.forEach((item) => item.classList.add("is-visible"));
     return;

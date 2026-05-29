@@ -1,7 +1,4 @@
-.books {
-  --books-card-bg: #f8fbff;
-}
-
+/* === LIVROS === */
 .books__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -11,12 +8,11 @@
 .book-card,
 .book-card .product-card__image-link,
 .book-card .product-card__body {
-  background: var(--books-card-bg);
+  background: var(--color-surface);
 }
 
 .book-card .product-card__image-link {
-  background: #EEF2FF;
-  background-color: #EEF2FF;
+  background: var(--color-page);
 }
 
 .book-card .product-card__image-link img {
@@ -38,7 +34,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .books__grid {
     grid-template-columns: 1fr;
   }
