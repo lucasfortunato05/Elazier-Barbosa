@@ -3,16 +3,25 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.2rem;
+  align-items: stretch;
 }
 
 .course-card {
+  height: 100%;
   background:
     linear-gradient(180deg, rgba(238, 242, 255, 0.96), rgba(238, 242, 255, 0.9)),
     var(--color-page);
 }
 
+.course-card .product-card__image-link {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
 .course-card .product-card__image-link img {
-  height: 290px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .courses__free-class {
@@ -65,10 +74,6 @@
 @media (max-width: 480px) {
   .courses__grid {
     grid-template-columns: 1fr;
-  }
-
-  .course-card .product-card__image-link img {
-    height: 250px;
   }
 
   .courses__free-class a {
