@@ -1,7 +1,7 @@
 .testimonials {
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 107, 0, 0.18), transparent 28rem),
+    radial-gradient(circle at 18% 18%, rgba(255, 185, 0, 0.18), transparent 28rem),
     radial-gradient(circle at 86% 60%, rgba(29, 185, 84, 0.12), transparent 24rem),
     linear-gradient(135deg, var(--color-navy-3), var(--color-navy));
 }
@@ -46,7 +46,7 @@
 
 .testimonial-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 107, 0, 0.44);
+  border-color: rgba(255, 185, 0, 0.44);
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -63,7 +63,7 @@
   height: 50px;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(255, 107, 0, 0.75);
+  border: 2px solid rgba(255, 185, 0, 0.75);
   border-radius: 50%;
   color: var(--color-white);
   background: linear-gradient(135deg, var(--color-orange), #ff9a3d);

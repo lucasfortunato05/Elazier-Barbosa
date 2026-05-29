@@ -1,79 +1,56 @@
 .about {
   background:
-    radial-gradient(circle at 86% 16%, rgba(255, 107, 0, 0.08), transparent 26rem),
-    var(--color-white);
+    radial-gradient(circle at 86% 16%, rgba(255, 185, 0, 0.08), transparent 26rem),
+    #EEF2FF;
 }
 
 .about__layout {
   display: grid;
   grid-template-columns: minmax(280px, 0.88fr) 1.12fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: start;
+  column-gap: clamp(2rem, 5vw, 4rem);
+  row-gap: clamp(1.8rem, 4vw, 2.6rem);
+  align-items: flex-start;
+}
+
+.about__bio-block {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 1.2rem;
 }
 
 .about__media {
-  position: sticky;
-  top: calc(var(--header-height) + 1.5rem);
-  display: grid;
-  gap: 1rem;
+  position: relative;
+  height: 100%;
+  max-height: calc((172px * 3) + (1rem * 2));
+  align-self: stretch;
+  isolation: isolate;
+  display: flex;
+  min-height: 0;
+  align-items: stretch;
+  justify-content: center;
 }
 
-.about__photo {
-  width: 100%;
-  min-height: 480px;
-  border-radius: var(--radius-md);
-  object-fit: cover;
-  object-position: center top;
-  box-shadow: var(--shadow-lg);
-}
-
-.award-card {
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 1rem;
-  align-items: center;
-  border: 1px solid rgba(255, 107, 0, 0.32);
-  border-radius: var(--radius-md);
+.about__media::before {
+  content: "";
+  position: absolute;
+  inset: 12% 4% 10%;
+  z-index: -1;
+  border-radius: 50%;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 245, 237, 0.96)),
-    var(--color-white);
-  padding: 1rem;
-  box-shadow: var(--shadow-sm);
+    radial-gradient(circle, rgba(255, 179, 107, 0.28), rgba(255, 185, 0, 0.1) 42%, transparent 70%);
+  filter: blur(18px);
 }
 
-.award-card img {
-  width: 96px;
-  height: 96px;
+.about__trophy {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-height: 0;
   object-fit: contain;
-}
-
-.award-card span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--color-orange);
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.award-card strong,
-.award-card small {
-  display: block;
-}
-
-.award-card strong {
-  margin-top: 0.18rem;
-  color: var(--color-navy);
-  font-family: var(--font-heading);
-  font-size: 1rem;
-}
-
-.award-card small {
-  margin-top: 0.18rem;
-  color: var(--color-muted);
-  font-weight: 700;
+  object-position: center center;
+  filter:
+    drop-shadow(0 26px 46px rgba(255, 185, 0, 0.28))
+    drop-shadow(0 10px 30px rgba(162, 122, 23, 0.22));
 }
 
 .about__content {
@@ -95,14 +72,14 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .highlight-card {
   min-height: 172px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  background: var(--color-white);
+  background: #EEF2FF;
   padding: 1.15rem;
   box-shadow: 0 12px 34px rgba(10, 31, 68, 0.08);
   transition:
@@ -113,7 +90,7 @@
 
 .highlight-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 107, 0, 0.34);
+  border-color: rgba(255, 185, 0, 0.34);
   box-shadow: var(--shadow-sm);
 }
 
@@ -125,7 +102,7 @@
   justify-content: center;
   border-radius: 50%;
   color: var(--color-orange);
-  background: rgba(255, 107, 0, 0.1);
+  background: rgba(255, 185, 0, 0.1);
   font-size: 1.08rem;
 }
 
@@ -147,12 +124,19 @@
   }
 
   .about__media {
-    position: relative;
-    top: auto;
+    align-self: auto;
+    min-height: auto;
   }
 
-  .about__photo {
-    min-height: 380px;
+  .about__media::before {
+    inset: 6% 10% 8%;
+  }
+
+  .about__trophy {
+    width: min(86vw, 500px);
+    height: auto;
+    min-height: auto;
+    max-height: 560px;
   }
 }
 
@@ -161,16 +145,8 @@
     grid-template-columns: 1fr;
   }
 
-  .award-card {
-    grid-template-columns: 76px 1fr;
-  }
-
-  .award-card img {
-    width: 76px;
-    height: 76px;
-  }
-
-  .about__photo {
-    min-height: 320px;
+  .about__trophy {
+    width: min(92vw, 410px);
+    max-height: 460px;
   }
 }

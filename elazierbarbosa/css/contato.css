@@ -1,8 +1,8 @@
 .contact {
   overflow: hidden;
   background:
-    radial-gradient(circle at 14% 18%, rgba(255, 107, 0, 0.1), transparent 22rem),
-    linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    radial-gradient(circle at 14% 18%, rgba(255, 185, 0, 0.1), transparent 22rem),
+    linear-gradient(180deg, #EEF2FF 0%, #f7faff 100%);
 }
 
 .contact__layout {
@@ -36,24 +36,23 @@
   display: grid;
   grid-template-columns: repeat(5, minmax(64px, 1fr));
   gap: 0.8rem;
-  border: 1px solid rgba(255, 107, 0, 0.22);
+  border: 1px solid rgba(255, 185, 0, 0.22);
   border-radius: var(--radius-md);
-  background: var(--color-white);
+  background: #EEF2FF;
   padding: clamp(1rem, 3vw, 1.5rem);
   box-shadow: var(--shadow-md);
 }
 
 .contact__panel a {
-  display: inline-flex;
+  display: flex;
   aspect-ratio: 1;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
-  color: var(--color-navy);
-  background:
-    linear-gradient(180deg, #ffffff, #f7faff),
-    var(--color-white);
+  border: 1px solid var(--color-navy);
+  border-radius: 50%;
+  flex-shrink: 0;
+  color: var(--color-white);
+  background: var(--color-navy);
   font-size: clamp(1.45rem, 3vw, 2rem);
   transition:
     transform var(--transition),
@@ -65,8 +64,8 @@
 .contact__panel a:hover,
 .contact__panel a:focus-visible {
   transform: translateY(-5px);
-  border-color: rgba(255, 107, 0, 0.5);
-  color: var(--color-orange);
+  border-color: var(--color-navy);
+  color: var(--color-white);
   box-shadow: 0 18px 34px rgba(10, 31, 68, 0.12);
 }
 

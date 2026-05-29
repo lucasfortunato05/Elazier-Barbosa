@@ -43,7 +43,7 @@
         <a class="brand" href="#inicio" aria-label="Elazier Barbosa - Início">
           <img
             class="brand__logo"
-            src="assets/logo-elazier-barbosa.svg"
+            src="assets/logo-elazier-barbosa.png"
             alt="Elazier Barbosa - Palestras Resiliência e Comunicação"
           />
         </a>
@@ -121,22 +121,37 @@
     <main>
       <!-- Hero -->
       <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <div class="hero__shape hero__shape--one"></div>
-        <div class="hero__shape hero__shape--two"></div>
-        <div class="hero__particles" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="hero__growth" aria-hidden="true">
+          <svg class="growth-line growth-line--main" viewBox="0 0 720 320" focusable="false">
+            <path class="growth-line__grid" d="M28 268H692M28 204H692M28 140H692M28 76H692" />
+            <path class="growth-line__area" d="M40 254C120 238 148 210 216 210C292 210 322 150 386 154C466 158 500 88 572 82C626 78 658 58 686 38V286H40Z" />
+            <path class="growth-line__path" d="M40 254C120 238 148 210 216 210C292 210 322 150 386 154C466 158 500 88 572 82C626 78 658 58 686 38" />
+            <path class="growth-line__arrow" d="M654 42L686 38L676 70" />
+          </svg>
+
+          <svg class="growth-line growth-line--wave" viewBox="0 0 820 240" focusable="false">
+            <path class="growth-line__path growth-line__path--soft" d="M22 190C126 176 164 132 248 136C350 140 390 78 482 86C604 96 650 44 796 34" />
+            <path class="growth-line__path growth-line__path--soft" d="M22 218C134 202 190 162 278 166C382 170 438 106 530 118C634 132 692 86 798 76" />
+          </svg>
+
+          <div class="growth-bars">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <span class="growth-arrow growth-arrow--one"></span>
+          <span class="growth-arrow growth-arrow--two"></span>
         </div>
 
-        <img
-          class="hero__portrait reveal reveal-right"
-          src="https://static.wixstatic.com/media/5ebe18_942487ff0341434da2d5059f212afe87~mv2.jpeg"
-          alt="Elazier Barbosa"
-        />
+        <div class="hero__portrait-column reveal reveal-right">
+          <img
+            class="hero__portrait"
+            src="https://static.wixstatic.com/media/5ebe18_942487ff0341434da2d5059f212afe87~mv2.jpeg"
+            alt="Elazier Barbosa"
+          />
+        </div>
 
         <div class="container hero__content">
           <p class="eyebrow reveal">Comunicação, Resiliência e PNL</p>
@@ -187,26 +202,7 @@
           </div>
 
           <div class="about__layout">
-            <div class="about__media reveal">
-              <img
-                class="about__photo"
-                src="https://static.wixstatic.com/media/5ebe18_942487ff0341434da2d5059f212afe87~mv2.jpeg"
-                alt="Retrato de Elazier Barbosa"
-              />
-              <div class="award-card">
-                <img
-                  src="https://static.wixstatic.com/media/5ebe18_ff0dc7d8be4446fbaafd15a60242702d~mv2.png"
-                  alt="Troféu Palestrante Destaque"
-                />
-                <div>
-                  <span><i class="fa-solid fa-award"></i> Troféu</span>
-                  <strong>"Palestrante Destaque"</strong>
-                  <small>Palestrantes do Brasil, nov/2025</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="about__content">
+            <div class="about__bio-block">
               <p class="about__bio reveal">
                 Elazier Barbosa é escritor, palestrante e mentor especializado
                 em Comunicação, Resiliência e Programação Neurolinguística.
@@ -222,7 +218,17 @@
                 Elazier traduz temas complexos em aprendizados claros,
                 aplicáveis e voltados para performance sustentável.
               </p>
+            </div>
 
+            <div class="about__media reveal">
+              <img
+                class="about__trophy"
+                src="https://static.wixstatic.com/media/5ebe18_ff0dc7d8be4446fbaafd15a60242702d~mv2.png"
+                alt="Troféu Palestrante Destaque"
+              />
+            </div>
+
+            <div class="about__content">
               <div class="about__highlights">
                 <article class="highlight-card reveal">
                   <i class="fa-solid fa-graduation-cap"></i>
@@ -430,7 +436,7 @@
                 aria-label="Comprar Você Vive Como as Águias?"
               >
                 <img
-                  src="https://static.wixstatic.com/media/5ebe18_51632d47148a4ab5a3178091957d86ee~mv2.png"
+                  src="https://static.wixstatic.com/media/5ebe18_51632d47148a4ab5a3178091957d58ee~mv2.png"
                   alt="Capa do ebook Você Vive Como as Águias?"
                 />
               </a>
@@ -952,6 +958,10 @@
       <i class="fa-brands fa-whatsapp"></i>
       <span>Fale agora</span>
     </a>
+
+    <button class="back-to-top" type="button" aria-label="Voltar ao topo" data-back-to-top>
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>

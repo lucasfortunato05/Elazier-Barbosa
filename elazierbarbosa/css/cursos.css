@@ -6,8 +6,8 @@
 
 .course-card {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.9)),
-    var(--color-white);
+    linear-gradient(180deg, rgba(238, 242, 255, 0.96), rgba(238, 242, 255, 0.9)),
+    #EEF2FF;
 }
 
 .course-card .product-card__image-link img {
@@ -25,9 +25,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  border: 1px solid rgba(255, 107, 0, 0.22);
+  border: 1px solid rgba(255, 185, 0, 0.22);
   border-radius: var(--radius-sm);
-  background: var(--color-white);
+  background: #EEF2FF;
   color: var(--color-navy);
   padding: 0.95rem 1.25rem;
   font-family: var(--font-heading);
@@ -47,7 +47,7 @@
 .courses__free-class a:hover,
 .courses__free-class a:focus-visible {
   transform: translateY(-3px);
-  border-color: rgba(255, 107, 0, 0.55);
+  border-color: rgba(255, 185, 0, 0.55);
   box-shadow: var(--shadow-md);
 }
 

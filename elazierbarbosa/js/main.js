@@ -2,12 +2,18 @@
   const header = document.querySelector("[data-navbar]");
   const toggle = document.querySelector("[data-nav-toggle]");
   const panel = document.querySelector("[data-nav-panel]");
+  const backToTop = document.querySelector("[data-back-to-top]");
   const navLinks = document.querySelectorAll(".nav-link");
   const sections = document.querySelectorAll("main section[id]");
 
   const setHeaderState = () => {
     if (!header) return;
     header.classList.toggle("is-scrolled", window.scrollY > 10);
+  };
+
+  const setBackToTopState = () => {
+    if (!backToTop) return;
+    backToTop.classList.toggle("is-visible", window.scrollY > 300);
   };
 
   const closeMenu = () => {
@@ -63,8 +69,15 @@
     toggle.addEventListener("click", toggleMenu);
   }
 
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      scrollToAnchor("#inicio");
+    });
+  }
+
   window.addEventListener("scroll", () => {
     setHeaderState();
+    setBackToTopState();
     setActiveLink();
   });
 
@@ -77,5 +90,6 @@
   });
 
   setHeaderState();
+  setBackToTopState();
   setActiveLink();
 })();
