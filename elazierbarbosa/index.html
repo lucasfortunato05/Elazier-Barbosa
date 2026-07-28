@@ -957,10 +957,16 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="container footer__layout">
-        <a class="footer__brand" href="#inicio" aria-label="Elazier Barbosa - Início">
-          <span>Elazier Barbosa</span>
-          <small>Escritor | Palestrante | Mentor</small>
-        </a>
+        <div class="footer__start">
+          <a class="footer__brand" href="#inicio" aria-label="Elazier Barbosa - Início">
+            <span>Elazier Barbosa</span>
+            <small>Escritor | Palestrante | Mentor</small>
+          </a>
+
+          <span class="footer__visits" data-visitas hidden>
+            Visitas no site esta semana: <strong data-visitas-valor></strong>
+          </span>
+        </div>
 
         <div class="footer__social" aria-label="Redes sociais no rodapé">
           <a
@@ -1046,5 +1052,68 @@
 
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+      // Contador público de acessos (contagem anônima e agregada, serviço externo).
+      (function () {
+        const linha = document.querySelector("[data-visitas]");
+        const valor = document.querySelector("[data-visitas-valor]");
+        if (!linha || !valor) return;
+
+        function obterChaveSemana() {
+          // Data em São Paulo (não no fuso do visitante), para a virada bater exatamente domingo -> segunda.
+          const partes = new Intl.DateTimeFormat("en-CA", {
+            timeZone: "America/Sao_Paulo",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          }).format(new Date());
+          const [ano, mes, dia] = partes.split("-").map(Number);
+
+          // Semana ISO 8601 (segunda a domingo), via o "truque da quinta-feira".
+          const data = new Date(Date.UTC(ano, mes - 1, dia));
+          const diaSemana = (data.getUTCDay() + 6) % 7; // segunda = 0 ... domingo = 6
+          data.setUTCDate(data.getUTCDate() - diaSemana + 3);
+          const anoIso = data.getUTCFullYear();
+          const primeiraQuinta = new Date(Date.UTC(anoIso, 0, 4));
+          const diaPrimeiraQuinta = (primeiraQuinta.getUTCDay() + 6) % 7;
+          primeiraQuinta.setUTCDate(primeiraQuinta.getUTCDate() - diaPrimeiraQuinta + 3);
+          const semanaIso = 1 + Math.round((data - primeiraQuinta) / (7 * 24 * 3600 * 1000));
+
+          return `semana-${anoIso}-W${String(semanaIso).padStart(2, "0")}`;
+        }
+
+        const chaveSemana = obterChaveSemana();
+        const ehLocal = ["localhost", "127.0.0.1"].includes(location.hostname);
+        const naoContar = localStorage.getItem("nao_contar") === "1";
+        const jaContouNaSemana = sessionStorage.getItem("visita_contada") === chaveSemana;
+        // "hit" incrementa, "get" apenas lê: F5 na mesma aba não infla o número.
+        const rota = ehLocal || naoContar || jaContouNaSemana ? "get" : "hit";
+
+        function tratarSemNumeroValido() {
+          if (rota === "get") {
+            // Primeiro acesso da semana: a chave ainda não existe no serviço, mostra 0 em vez de esconder.
+            valor.textContent = "0";
+            linha.hidden = false;
+            return;
+          }
+          // "hit" sem número válido (serviço fora do ar): a linha continua oculta, sem erro na tela.
+        }
+
+        fetch(`https://abacus.jasoncameron.dev/${rota}/elazierbarbosa-com-br/${chaveSemana}`)
+          .then((response) => response.json())
+          .then((dados) => {
+            const numero = Number(dados && dados.value);
+            if (!Number.isFinite(numero)) {
+              tratarSemNumeroValido();
+              return;
+            }
+            valor.textContent = numero.toLocaleString("pt-BR");
+            sessionStorage.setItem("visita_contada", chaveSemana);
+            linha.hidden = false;
+          })
+          .catch(tratarSemNumeroValido);
+      })();
+    </script>
   </body>
 </html>

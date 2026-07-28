@@ -13,6 +13,12 @@
   align-items: center;
 }
 
+.footer__start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .footer__brand {
   display: inline-grid;
   gap: 0.2rem;
@@ -82,6 +88,18 @@
   color: var(--color-white);
 }
 
+.footer__visits {
+  display: block;
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.82rem;
+}
+
+.footer__visits strong {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+}
+
 .privacy-section {
   display: none;
   background: var(--color-surface);
@@ -131,9 +149,13 @@
     text-align: center;
   }
 
-  .footer__brand,
+  .footer__start,
   .footer p {
     justify-self: center;
+  }
+
+  .footer__start {
+    align-items: center;
   }
 
   .footer p {
