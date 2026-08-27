@@ -210,7 +210,8 @@
     overflow-y: auto;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 24px;
-    background: rgba(10, 31, 68, 0.85);
+    background: rgb(9, 26, 58);
+    background: linear-gradient(180deg, rgba(11, 30, 63, 0.99), rgba(7, 21, 46, 0.99));
     box-shadow: 0 24px 56px rgba(10, 31, 68, 0.18);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);

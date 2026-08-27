@@ -3,9 +3,24 @@
   const toggle = document.querySelector("[data-nav-toggle]");
   const panel = document.querySelector("[data-nav-panel]");
   const backToTop = document.querySelector("[data-back-to-top]");
+  const floatingWhatsapp = document.querySelector(".floating-whatsapp");
+  const footer = document.querySelector(".footer");
   const navLinks = document.querySelectorAll(".nav-link");
   const sections = document.querySelectorAll("main section[id]");
   let isScrollQueued = false;
+
+  // Esconde o WhatsApp flutuante ao chegar no rodapé, evitando sobrepor o conteúdo.
+  if (floatingWhatsapp && footer && "IntersectionObserver" in window) {
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          floatingWhatsapp.classList.toggle("is-hidden", entry.isIntersecting);
+        });
+      },
+      { threshold: 0.12 }
+    );
+    footerObserver.observe(footer);
+  }
 
   // Atualiza o estado visual da navbar fixa.
   const setHeaderState = () => {
